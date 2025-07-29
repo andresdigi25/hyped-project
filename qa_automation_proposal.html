@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Automated QA System - Proposal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Taurus, -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0b1426 0%, #1f3a93 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #ff6900;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 0 40px;
+        }
+        
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .benefit-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(27, 58, 147, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .benefit-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        /* Workflow Steps */
+        .workflow-container {
+            margin-top: 60px;
+        }
+        
+        .workflow-step {
+            display: flex;
+            margin-bottom: 60px;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        .workflow-number {
+            background: #1b3a93;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .workflow-content {
+            flex: 1;
+        }
+        
+        .workflow-content h3 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .workflow-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .workflow-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .workflow-content li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .workflow-content li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #1b3a93;
+            font-weight: 700;
+        }
+        
+        /* Architecture Section */
+        .architecture-diagram {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .architecture-diagram:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(27, 58, 147, 0.2);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: 2% auto;
+            padding: 20px;
+            width: 95%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e5e5;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: #1b3a93;
+            font-weight: 600;
+        }
+        
+        .close {
+            color: #666;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #1b3a93;
+            background: #f8f9fa;
+        }
+        
+        .modal svg {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+        }
+        
+        .architecture-flow {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #1a1a1a;
+            line-height: 2;
+            background: white;
+            padding: 30px;
+            border-radius: 6px;
+            border: 2px solid #e5e5e5;
+        }
+        
+        /* Technology Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tech-item {
+            background: white;
+            border: 2px solid #e5e5e5;
+            padding: 30px;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            border-color: #1b3a93;
+        }
+        
+        .tech-item h4 {
+            color: #1b3a93;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .tech-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Future Improvements */
+        .improvements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .improvement-item {
+            background: white;
+            border-left: 4px solid #ff6900;
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .improvement-item h4 {
+            color: #1a1a1a;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .improvement-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1b3a93 0%, #0b1426 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .approve-btn {
+            background: #ff6900;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .approve-btn:hover {
+            background: #e55a00;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 105, 0, 0.3);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .workflow-step {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .cta-section {
+                padding: 60px 20px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>AI-Powered QA Automation</h1>
+            <p class="subtitle">Where AI agents, robots, and people work together to transform business outcomes.</p>
+            <p class="description">By unifying agentic AI, automation, BPM, and process intelligence, our system gives organizations total control to design, run, and optimize new agentic QA processes.</p>
+            <span class="status-badge">Proposal for Approval</span>
+        </div>
+
+    <!-- Modal for Diagram -->
+    <div id="diagramModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">AI-Powered QA Automation - System Architecture</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <svg viewBox="0 0 1200 600" style="width: 100%; height: auto;">
+                <!-- Same SVG content but larger -->
+                <defs>
+                    <linearGradient id="modalCardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#f1f3f4;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="modalPrimaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1a237e;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#0d47a1;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="modalSuccessGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1b5e20;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#2e7d32;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="modalWarningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#e65100;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#f57c00;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="modalErrorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#b71c1c;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#d32f2f;stop-opacity:1" />
+                    </linearGradient>
+                    <filter id="modalShadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <dropShadow dx="2" dy="4" stdDeviation="4" flood-color="rgba(0,0,0,0.25)"/>
+                    </filter>
+                </defs>
+                
+                <!-- Step 1: Jira -->
+                <rect x="20" y="50" width="140" height="80" rx="8" fill="url(#modalCardGradient)" stroke="#1a237e" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="90" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1a237e">JIRA</text>
+                <text x="90" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">User Story</text>
+                <text x="90" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Acceptance Criteria</text>
+                <text x="90" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Test Environment</text>
+                
+                <!-- Arrow 1 -->
+                <path d="M 170 90 L 200 90" stroke="#1a237e" stroke-width="4" fill="none" marker-end="url(#modalArrowhead)"/>
+                
+                <!-- Step 2: n8n AI -->
+                <rect x="210" y="50" width="140" height="80" rx="8" fill="url(#modalPrimaryGradient)" stroke="#0d47a1" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="280" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">n8n + AI/MCP</text>
+                <text x="280" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Generate Test</text>
+                <text x="280" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Playwright Script</text>
+                <text x="280" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Format .spec.ts</text>
+                
+                <!-- Arrow 2 -->
+                <path d="M 360 90 L 390 90" stroke="#0d47a1" stroke-width="4" fill="none" marker-end="url(#modalArrowhead)"/>
+                
+                <!-- Step 3: GitHub -->
+                <rect x="400" y="50" width="140" height="80" rx="8" fill="url(#modalCardGradient)" stroke="#1b5e20" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="470" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1b5e20">GitHub API</text>
+                <text x="470" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Commit to</text>
+                <text x="470" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">qa/auto-tests</text>
+                <text x="470" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Trigger CI/CD</text>
+                
+                <!-- Arrow 3 -->
+                <path d="M 550 90 L 580 90" stroke="#1b5e20" stroke-width="4" fill="none" marker-end="url(#modalArrowhead2)"/>
+                
+                <!-- Step 4: CI/CD -->
+                <rect x="590" y="50" width="140" height="80" rx="8" fill="url(#modalSuccessGradient)" stroke="#2e7d32" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="660" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">CI/CD Pipeline</text>
+                <text x="660" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Execute Playwright</text>
+                <text x="660" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Generate Evidence</text>
+                <text x="660" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Logs, Screenshots</text>
+                
+                <!-- Decision Diamond -->
+                <polygon points="660,180 720,200 660,220 600,200" fill="url(#modalWarningGradient)" stroke="#f57c00" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="660" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="white">Pass?</text>
+                
+                <!-- Arrow down to decision -->
+                <path d="M 660 140 L 660 170" stroke="#2e7d32" stroke-width="4" fill="none" marker-end="url(#modalArrowhead2)"/>
+                
+                <!-- Success Path - Right -->
+                <path d="M 720 200 L 780 200" stroke="#1b5e20" stroke-width="4" fill="none" marker-end="url(#modalArrowhead2)"/>
+                <text x="750" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" fill="#1b5e20" font-weight="700">YES</text>
+                
+                <!-- Step 5: Success - Jira Update -->
+                <rect x="790" y="160" width="140" height="80" rx="8" fill="url(#modalSuccessGradient)" stroke="#2e7d32" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="860" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">Jira Update</text>
+                <text x="860" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">✅ Results OK</text>
+                <text x="860" y="215" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Add Evidence</text>
+                <text x="860" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Status: Done</text>
+                
+                <!-- Failure Path - Down -->
+                <path d="M 660 230 L 660 280" stroke="#b71c1c" stroke-width="4" fill="none" marker-end="url(#modalArrowhead3)"/>
+                <text x="680" y="255" font-family="Segoe UI, sans-serif" font-size="12" fill="#b71c1c" font-weight="700">NO</text>
+                
+                <!-- Step 6: AI Analysis -->
+                <rect x="590" y="290" width="140" height="80" rx="8" fill="url(#modalWarningGradient)" stroke="#f57c00" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="660" y="315" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">AI Analysis</text>
+                <text x="660" y="330" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Root Cause</text>
+                <text x="660" y="345" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Selector Fixes</text>
+                <text x="660" y="360" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Generate PR</text>
+                
+                <!-- Arrow left from AI Analysis -->
+                <path d="M 580 330 L 550 330" stroke="#e65100" stroke-width="4" fill="none" marker-end="url(#modalArrowhead4)"/>
+                
+                <!-- Step 7: Auto-Fix -->
+                <rect x="400" y="290" width="140" height="80" rx="8" fill="url(#modalWarningGradient)" stroke="#f57c00" stroke-width="3" filter="url(#modalShadow)"/>
+                <text x="470" y="315" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">Auto-Fix</text>
+                <text x="470" y="330" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">New Commit</text>
+                <text x="470" y="345" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Updated Test</text>
+                <text x="470" y="360" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Re-trigger CI/CD</text>
+                
+                <!-- Arrow up from Auto-Fix back to CI/CD -->
+                <path d="M 470 280 L 470 250 L 660 250 L 660 140" stroke="#e65100" stroke-width="4" fill="none" marker-end="url(#modalArrowhead4)" stroke-dasharray="8,4"/>
+                
+                <!-- Arrow markers for modal -->
+                <defs>
+                    <marker id="modalArrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#1a237e" />
+                    </marker>
+                    <marker id="modalArrowhead2" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#1b5e20" />
+                    </marker>
+                    <marker id="modalArrowhead3" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#b71c1c" />
+                    </marker>
+                    <marker id="modalArrowhead4" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#e65100" />
+                    </marker>
+                </defs>
+                
+                <!-- Labels -->
+                <text x="20" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1a237e">1. Ticket Intake</text>
+                <text x="210" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0d47a1">2. AI Generation</text>
+                <text x="400" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1b5e20">3. Code Commit</text>
+                <text x="590" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#2e7d32">4. Test Execution</text>
+                <text x="790" y="140" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#2e7d32">5. Success Path</text>
+                <text x="400" y="395" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#e65100">6. Auto-Fix Path</text>
+                <text x="590" y="395" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#f57c00">7. AI Analysis</text>
+                
+                <!-- Process Flow Legend -->
+                <rect x="950" y="50" width="220" height="180" rx="10" fill="#ffffff" stroke="#1a237e" stroke-width="2" filter="url(#modalShadow)"/>
+                <text x="1060" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1a237e">Process Legend</text>
+                
+                <circle cx="970" cy="100" r="8" fill="#1a237e"/>
+                <text x="990" y="105" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Input/Processing</text>
+                
+                <circle cx="970" cy="125" r="8" fill="#1b5e20"/>
+                <text x="990" y="130" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Execution/Success</text>
+                
+                <circle cx="970" cy="150" r="8" fill="#e65100"/>
+                <text x="990" y="155" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Analysis/Fix</text>
+                
+                <circle cx="970" cy="175" r="8" fill="#b71c1c"/>
+                <text x="990" y="180" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Error/Failure</text>
+                
+                <path d="M 970 195 L 1000 195" stroke="#e65100" stroke-width="3" stroke-dasharray="6,3"/>
+                <text x="1005" y="200" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Retry Loop</text>
+                
+                <polygon points="970,210 985,218 970,226 955,218" fill="#f57c00" stroke="#e65100" stroke-width="2"/>
+                <text x="990" y="223" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Decision Point</text>
+            </svg>
+        </div>
+    </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            
+            <!-- Benefits Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Key Benefits</h2>
+                    <p class="section-subtitle">Transform your Quality Assurance process with effortless agent adoption, seamless processes, and simplified management.</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <span class="benefit-icon">⚡</span>
+                        <h3>Effortless Adoption</h3>
+                        <p>Easily model, orchestrate, and optimize agentic processes involving AI agents, robots, and people.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="benefit-icon">🔄</span>
+                        <h3>Seamless Processes</h3>
+                        <p>End start-and-stop automation—turn disparate automated tasks into cohesive long-running workflows.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="benefit-icon">⚙️</span>
+                        <h3>Simplified Management</h3>
+                        <p>Enhance process outcomes by accelerating and simplifying how QA processes are managed.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="benefit-icon">📊</span>
+                        <h3>Process Intelligence</h3>
+                        <p>Gain actionable insights to swiftly resolve process inefficiencies and optimize performance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Automated Workflow</h2>
+                    <p class="section-subtitle">Design processes with standard BPMN constructs, seamlessly integrate AI agents, and manage decisions within complex processes.</p>
+                </div>
+                
+                <div class="workflow-container">
+                    <div class="workflow-step">
+                        <div class="workflow-number">1</div>
+                        <div class="workflow-content">
+                            <h3>Ticket Intake</h3>
+                            <p>Use a Jira Webhook or scheduled trigger in n8n to read issues of type "QA Task" with specific criteria.</p>
+                            <ul>
+                                <li>Jira Search Issues: Filter by status "Ready for QA"</li>
+                                <li>AI/MCP Processing: Generate Playwright test from acceptance criteria</li>
+                                <li>Function Node: Format script as .spec.ts file</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-number">2</div>
+                        <div class="workflow-content">
+                            <h3>Auto Code Generation & Commit</h3>
+                            <p>AI returns the test in Playwright format and automatically saves it to Git repository.</p>
+                            <ul>
+                                <li>GitHub API: Automatic commit to qa/auto-tests branch</li>
+                                <li>CI/CD Trigger: Execute pipeline with npx playwright test</li>
+                                <li>Automatic Deployment: Generate logs, screenshots, and videos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-number">3</div>
+                        <div class="workflow-content">
+                            <h3>Execution & Result Capture</h3>
+                            <p>CI/CD executes tests and captures comprehensive results with visual evidence.</p>
+                            <ul>
+                                <li>Webhook Trigger: Receive pipeline results</li>
+                                <li>AI Analysis: Analyze logs, screenshots, and videos</li>
+                                <li>Evidence Storage: Save to S3/GitHub Artifacts</li>
+                                <li>Jira Update: Add comments and evidence to ticket</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-number">4</div>
+                        <div class="workflow-content">
+                            <h3>Intelligent Auto-Fix</h3>
+                            <p>If tests fail, AI analyzes and auto-corrects failures by detecting selector changes.</p>
+                            <ul>
+                                <li>AI Root Cause: Analyze selector failures and timeouts</li>
+                                <li>Smart Fix: Regenerate robust selectors based on current DOM</li>
+                                <li>Auto PR: Create Pull Request with corrected version</li>
+                                <li>Re-execution: Pipeline runs automatically</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">System Architecture</h2>
+                    <p class="section-subtitle">Oversee and track specific instances through different stages of a process, with intelligent exception handling.</p>
+                </div>
+                
+                <div class="architecture-diagram" onclick="openModal()">
+                    <svg viewBox="0 0 1200 600" style="width: 100%; height: auto; max-width: 1200px;">
+                        <!-- Background -->
+                        <defs>
+                            <!-- Solid colors instead of gradients for better visibility -->
+                            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                                <dropShadow dx="2" dy="4" stdDeviation="4" flood-color="rgba(0,0,0,0.3)"/>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Step 1: Jira -->
+                        <rect x="20" y="50" width="140" height="80" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="90" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0d47a1">JIRA</text>
+                        <text x="90" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#1565c0">User Story</text>
+                        <text x="90" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#1565c0">Acceptance Criteria</text>
+                        <text x="90" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#1565c0">Test Environment</text>
+                        
+                        <!-- Arrow 1 -->
+                        <path d="M 170 90 L 200 90" stroke="#1565c0" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Step 2: n8n AI -->
+                        <rect x="210" y="50" width="140" height="80" rx="8" fill="#1565c0" stroke="#0d47a1" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="280" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">n8n + AI/MCP</text>
+                        <text x="280" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Generate Test</text>
+                        <text x="280" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Playwright Script</text>
+                        <text x="280" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Format .spec.ts</text>
+                        
+                        <!-- Arrow 2 -->
+                        <path d="M 360 90 L 390 90" stroke="#1565c0" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Step 3: GitHub -->
+                        <rect x="400" y="50" width="140" height="80" rx="8" fill="#e8f5e8" stroke="#2e7d32" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="470" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1b5e20">GitHub API</text>
+                        <text x="470" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#2e7d32">Commit to</text>
+                        <text x="470" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#2e7d32">qa/auto-tests</text>
+                        <text x="470" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#2e7d32">Trigger CI/CD</text>
+                        
+                        <!-- Arrow 3 -->
+                        <path d="M 550 90 L 580 90" stroke="#2e7d32" stroke-width="4" fill="none" marker-end="url(#arrowhead2)"/>
+                        
+                        <!-- Step 4: CI/CD -->
+                        <rect x="590" y="50" width="140" height="80" rx="8" fill="#2e7d32" stroke="#1b5e20" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="660" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">CI/CD Pipeline</text>
+                        <text x="660" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Execute Playwright</text>
+                        <text x="660" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Generate Evidence</text>
+                        <text x="660" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Logs, Screenshots</text>
+                        
+                        <!-- Decision Diamond -->
+                        <polygon points="660,180 720,200 660,220 600,200" fill="#ff9800" stroke="#f57c00" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="660" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="white">Pass?</text>
+                        
+                        <!-- Arrow down to decision -->
+                        <path d="M 660 140 L 660 170" stroke="#2e7d32" stroke-width="4" fill="none" marker-end="url(#arrowhead2)"/>
+                        
+                        <!-- Success Path - Right -->
+                        <path d="M 720 200 L 780 200" stroke="#2e7d32" stroke-width="4" fill="none" marker-end="url(#arrowhead2)"/>
+                        <text x="750" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" fill="#2e7d32" font-weight="700">YES</text>
+                        
+                        <!-- Step 5: Success - Jira Update -->
+                        <rect x="790" y="160" width="140" height="80" rx="8" fill="#4caf50" stroke="#2e7d32" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="860" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">Jira Update</text>
+                        <text x="860" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="424242">✅ Results OK</text>
+                        <text x="860" y="215" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="424242">Add Evidence</text>
+                        <text x="860" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="424242">Status: Done</text>
+                        
+                        <!-- Failure Path - Down -->
+                        <path d="M 660 230 L 660 280" stroke="#d32f2f" stroke-width="4" fill="none" marker-end="url(#arrowhead3)"/>
+                        <text x="680" y="255" font-family="Segoe UI, sans-serif" font-size="12" fill="#d32f2f" font-weight="700">NO</text>
+                        
+                        <!-- Step 6: AI Analysis -->
+                        <rect x="590" y="290" width="140" height="80" rx="8" fill="#ff9800" stroke="#f57c00" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="660" y="315" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">AI Analysis</text>
+                        <text x="660" y="330" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Root Cause</text>
+                        <text x="660" y="345" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Selector Fixes</text>
+                        <text x="660" y="360" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Generate PR</text>
+                        
+                        <!-- Arrow left from AI Analysis -->
+                        <path d="M 580 330 L 550 330" stroke="#ff9800" stroke-width="4" fill="none" marker-end="url(#arrowhead4)"/>
+                        
+                        <!-- Step 7: Auto-Fix -->
+                        <rect x="400" y="290" width="140" height="80" rx="8" fill="#ff5722" stroke="#d84315" stroke-width="3" filter="url(#shadow)"/>
+                        <text x="470" y="315" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#424242">Auto-Fix</text>
+                        <text x="470" y="330" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">New Commit</text>
+                        <text x="470" y="345" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Updated Test</text>
+                        <text x="470" y="360" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Re-trigger CI/CD</text>
+                        
+                        <!-- Arrow up from Auto-Fix back to CI/CD -->
+                        <path d="M 470 280 L 470 250 L 660 250 L 660 140" stroke="#ff5722" stroke-width="4" fill="none" marker-end="url(#arrowhead4)" stroke-dasharray="8,4"/>
+                        
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                                <polygon points="0 0, 12 4, 0 8" fill="#1565c0" />
+                            </marker>
+                            <marker id="arrowhead2" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                                <polygon points="0 0, 12 4, 0 8" fill="#2e7d32" />
+                            </marker>
+                            <marker id="arrowhead3" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                                <polygon points="0 0, 12 4, 0 8" fill="#d32f2f" />
+                            </marker>
+                            <marker id="arrowhead4" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+                                <polygon points="0 0, 12 4, 0 8" fill="#ff5722" />
+                            </marker>
+                        </defs>
+                        
+                        
+                        <!-- Labels -->
+                        <text x="20" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1565c0">1. Ticket Intake</text>
+                        <text x="210" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0d47a1">2. AI Generation</text>
+                        <text x="400" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#2e7d32">3. Code Commit</text>
+                        <text x="590" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1b5e20">4. Test Execution</text>
+                        <text x="790" y="140" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#2e7d32">5. Success Path</text>
+                        <text x="400" y="395" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#ff5722">6. Auto-Fix Path</text>
+                        <text x="590" y="395" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#f57c00">7. AI Analysis</text>
+                        
+                        <!-- Process Flow Legend -->
+                        <rect x="950" y="50" width="220" height="180" rx="10" fill="#ffffff" stroke="#1565c0" stroke-width="2" filter="url(#shadow)"/>
+                        <text x="1060" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1565c0">Process Legend</text>
+                        
+                        <circle cx="970" cy="100" r="8" fill="#1565c0"/>
+                        <text x="990" y="105" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#333">Input/Processing</text>
+                        
+                        <circle cx="970" cy="125" r="8" fill="#2e7d32"/>
+                        <text x="990" y="130" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#333">Execution/Success</text>
+                        
+                        <circle cx="970" cy="150" r="8" fill="#ff9800"/>
+                        <text x="990" y="155" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#333">Analysis/Fix</text>
+                        
+                        <circle cx="970" cy="175" r="8" fill="#d32f2f"/>
+                        <text x="990" y="180" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#333">Error/Failure</text>
+                        
+                        <path d="M 970 195 L 1000 195" stroke="#ff5722" stroke-width="3" stroke-dasharray="6,3"/>
+                        <text x="1005" y="200" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#333">Retry Loop</text>
+                        
+                        <polygon points="970,210 985,218 970,226 955,218" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+                        <text x="990" y="223" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#333">Decision Point</text>
+                    </svg>
+                        <!-- Labels -->
+                        <text x="20" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1a237e">1. Ticket Intake</text>
+                        <text x="210" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0d47a1">2. AI Generation</text>
+                        <text x="400" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1b5e20">3. Code Commit</text>
+                        <text x="590" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#2e7d32">4. Test Execution</text>
+                        <text x="790" y="140" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#2e7d32">5. Success Path</text>
+                        <text x="400" y="395" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#e65100">6. Auto-Fix Path</text>
+                        <text x="590" y="395" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#f57c00">7. AI Analysis</text>
+                        
+                        <!-- Process Flow Legend -->
+                        <rect x="950" y="50" width="220" height="180" rx="10" fill="#ffffff" stroke="#1a237e" stroke-width="2" filter="url(#shadow)"/>
+                        <text x="1060" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1a237e">Process Legend</text>
+                        
+                        <circle cx="970" cy="100" r="8" fill="#1a237e"/>
+                        <text x="990" y="105" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Input/Processing</text>
+                        
+                        <circle cx="970" cy="125" r="8" fill="#1b5e20"/>
+                        <text x="990" y="130" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Execution/Success</text>
+                        
+                        <circle cx="970" cy="150" r="8" fill="#e65100"/>
+                        <text x="990" y="155" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Analysis/Fix</text>
+                        
+                        <circle cx="970" cy="175" r="8" fill="#b71c1c"/>
+                        <text x="990" y="180" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Error/Failure</text>
+                        
+                        <path d="M 970 195 L 1000 195" stroke="#e65100" stroke-width="3" stroke-dasharray="6,3"/>
+                        <text x="1005" y="200" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Retry Loop</text>
+                        
+                        <polygon points="970,210 985,218 970,226 955,218" fill="#f57c00" stroke="#e65100" stroke-width="2"/>
+                        <text x="990" y="223" font-family="Segoe UI, sans-serif" font-size="11" font-weight="500" fill="#424242">Decision Point</text>
+                    </svg>
+                    <p style="margin-top: 20px; color: #666; font-style: italic;">Click to view in full size</p>
+                </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Technology Stack</h2>
+                    <p class="section-subtitle">Seamlessly integrate agents, third-party agents, robots, and people into complex, multisystem processes.</p>
+                </div>
+                
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <h4>n8n Orchestration</h4>
+                        <p>Automated workflow orchestration with advanced integration and processing capabilities.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>AI/MCP Integration</h4>
+                        <p>Intelligent test code generation using advanced language models for automated QA.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Playwright Testing</h4>
+                        <p>Modern automated testing framework for cross-browser web application testing.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Jira Integration</h4>
+                        <p>Complete bidirectional integration with enterprise ticket management system.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>GitHub Actions</h4>
+                        <p>Robust CI/CD for automated test execution and continuous deployment.</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Cloud Storage</h4>
+                        <p>Secure and scalable storage for test evidence, logs, and artifacts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Improvements -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Future Enhancements</h2>
+                    <p class="section-subtitle">Explore how you can use our platform across industries. Combine intelligent decision-making, seamless execution, and people, all at scale.</p>
+                </div>
+                
+                <div class="improvements-grid">
+                    <div class="improvement-item">
+                        <h4>Continuous Learning</h4>
+                        <p>Store patterns of previous failures and corrections to improve future automated test generations and reduce recurring issues.</p>
+                    </div>
+                    <div class="improvement-item">
+                        <h4>Exploratory AI Testing</h4>
+                        <p>When a ticket lacks clear criteria, AI generates alternative cases to expand coverage and discover edge cases automatically.</p>
+                    </div>
+                    <div class="improvement-item">
+                        <h4>Visual Regression Testing</h4>
+                        <p>AI automatically detects unexpected visual changes and attaches them to Jira with detailed difference analysis.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your QA?</h2>
+            <p>By seamlessly integrating AI agents, automation, and people, businesses gain control, cut through complexity, and keep processes running smoothly—at scale.</p>
+            <button class="approve-btn" onclick="approveProject()">Approve Project</button>
+        </div>
+    </div>
+
+    <script>
+        function approveProject() {
+            alert('Excellent! The project has been marked as approved. We will proceed with implementation.');
+            
+            const btn = document.querySelector('.approve-btn');
+            btn.style.background = '#2ecc71';
+            btn.innerHTML = '✅ PROJECT APPROVED';
+            btn.disabled = true;
+            btn.style.cursor = 'default';
+        }
+        
+        // Modal functions
+        function openModal() {
+            document.getElementById('diagramModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('diagramModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('diagramModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Smooth scroll animation for workflow steps
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Apply animation to workflow steps and benefit cards
+        document.querySelectorAll('.workflow-step, .benefit-card, .tech-item, .improvement-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
