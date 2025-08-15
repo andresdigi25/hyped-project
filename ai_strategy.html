@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Adoption Strategy Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f3f2ef;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #0a66c2;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 3rem 4rem;
+        }
+
+        .level-section {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #e6e6e6;
+            padding-bottom: 3rem;
+        }
+
+        .level-section:last-child {
+            border-bottom: none;
+        }
+
+        .level-title {
+            font-size: 1.8rem;
+            color: #0a66c2;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .target-audience {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid #0a66c2;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .target-audience strong {
+            color: #0a66c2;
+        }
+
+        .section-header {
+            font-size: 1.3rem;
+            color: #333;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tool-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .tool-card h4 {
+            color: #0a66c2;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .tool-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .tool-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .tool-list li:before {
+            content: "•";
+            color: #0a66c2;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .evaluation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .evaluation-table th {
+            background: #0a66c2;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .evaluation-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e6e6e6;
+            vertical-align: top;
+        }
+
+        .evaluation-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .use-cases {
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .roadmap-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 3rem;
+            margin: 3rem -4rem 0 -4rem;
+            border-top: 2px solid #0a66c2;
+        }
+
+        .roadmap-title {
+            font-size: 2rem;
+            color: #0a66c2;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .roadmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .roadmap-table th {
+            background: #0a66c2;
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .roadmap-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e6e6e6;
+        }
+
+        .roadmap-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .business-value {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #0a66c2;
+            margin-top: 2rem;
+        }
+
+        .business-value h3 {
+            color: #0a66c2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .value-item {
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .value-item strong {
+            color: #0a66c2;
+        }
+
+        .separator {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .roadmap-section {
+                margin: 3rem -1.5rem 0 -1.5rem;
+                padding: 2rem 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AI Adoption Strategy Deck</h1>
+            <p class="subtitle">From productivity tools to advanced AI-driven automation</p>
+        </header>
+
+        <main class="content">
+            <section class="level-section">
+                <h2 class="level-title">Level 1 — AI for Non-Developers: Productivity & Knowledge Tools</h2>
+                
+                <div class="target-audience">
+                    <strong>Target audience:</strong> Business teams, analysts, marketing, HR, operations.
+                </div>
+
+                <h3 class="section-header">Tools & Skills</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h4>AI Chat Platforms</h4>
+                        <ul class="tool-list">
+                            <li>Claude Desktop, ChatGPT, Gemini, Mistral Chat for:</li>
+                            <li>Research & summaries</li>
+                            <li>Document drafting (reports, proposals, presentations)</li>
+                            <li>Translations & rewriting</li>
+                            <li>Chart & diagram generation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>MCP (Model Context Protocol) Integrations</h4>
+                        <ul class="tool-list">
+                            <li><strong>Jira MCP:</strong> Create user stories, update tickets via natural language</li>
+                            <li><strong>Confluence MCP:</strong> Create pages, summarize meeting notes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="use-cases">
+                    <h4>Training Focus:</h4>
+                    <ul class="tool-list">
+                        <li>Prompt engineering for business tasks</li>
+                        <li>Privacy & compliance when using AI tools</li>
+                        <li>Integration with daily workflows (email, docs, task management)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="separator">⸻</div>
+
+            <section class="level-section">
+                <h2 class="level-title">Level 2 — AI for Developers: Coding Assistants & IDE Integration</h2>
+                
+                <div class="target-audience">
+                    <strong>Target audience:</strong> Frontend, backend, QA, DevOps, data engineers, architects.
+                </div>
+
+                <h3 class="section-header">Tools to Compare & Train</h3>
+                <div class="use-cases">
+                    <ul class="tool-list">
+                        <li>VS Code + GitHub Copilot</li>
+                        <li>Cursor</li>
+                        <li>Claude Code</li>
+                        <li>Gemini CLI</li>
+                        <li>Others: Tabnine, AWS CodeWhisperer (optional)</li>
+                    </ul>
+                </div>
+
+                <h3 class="section-header">Evaluation by Role</h3>
+                <table class="evaluation-table">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Strengths of Tools</th>
+                            <th>Weaknesses / Gaps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend</strong></td>
+                            <td>Rapid UI code generation, component refactoring, Tailwind integration</td>
+                            <td>Context window limits, design fidelity issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend</strong></td>
+                            <td>API scaffolding, ORM models, DB migrations</td>
+                            <td>Complex business logic still needs guidance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>QA Automation</strong></td>
+                            <td>Playwright/Cypress script generation</td>
+                            <td>Needs human review for edge cases</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DevOps</strong></td>
+                            <td>YAML/K8s manifests, IaC generation (Terraform/CloudFormation)</td>
+                            <td>Environment-specific configs still require validation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SQL</strong></td>
+                            <td>Query optimization, auto-generation from requirements</td>
+                            <td>Risk of inefficient joins or wrong assumptions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Architecture</strong></td>
+                            <td>Boilerplate for microservices, diagrams</td>
+                            <td>Limited understanding of non-standard patterns</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="use-cases">
+                    <h4>Training Focus:</h4>
+                    <ul class="tool-list">
+                        <li>How to integrate AI assistants in the IDE</li>
+                        <li>Code review & verification practices</li>
+                        <li>Leveraging AI for documentation & testing</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="separator">⸻</div>
+
+            <section class="level-section">
+                <h2 class="level-title">Level 3 — AI-Driven Development Workflows (n8n + RAG + MCP)</h2>
+                
+                <div class="target-audience">
+                    <strong>Target audience:</strong> Advanced dev teams & AI champions.
+                </div>
+
+                <h3 class="section-header">Use Cases</h3>
+                <div class="use-cases">
+                    <ul class="tool-list">
+                        <li>Agent for Frontend generation (React, Angular)</li>
+                        <li>Agent for Playwright automated tests</li>
+                        <li>Agent for Backend APIs (FastAPI, Node.js)</li>
+                        <li>Agent for SQL schema & queries (DDL + complex SELECT)</li>
+                        <li>RAG integration with company documentation & codebase to ensure outputs follow internal standards</li>
+                        <li>MCP integration to execute actions (commit to repo, update Jira, deploy preview environments)</li>
+                    </ul>
+                </div>
+
+                <div class="use-cases">
+                    <h4>Outcome:</h4>
+                    <p>Developers request a feature in natural language → AI generates code + tests + commits to repo.</p>
+                </div>
+            </section>
+
+            <div class="separator">⸻</div>
+
+            <section class="level-section">
+                <h2 class="level-title">Level 4 — Autonomous Workflows & Data-Driven Agents</h2>
+                
+                <div class="target-audience">
+                    <strong>Target audience:</strong> DevOps, data teams, operations automation.
+                </div>
+
+                <h3 class="section-header">Use Cases</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h4>Automated Data Pipelines</h4>
+                        <ul class="tool-list">
+                            <li>Process and clean incoming data</li>
+                            <li>Trigger analysis reports</li>
+                            <li>Enrich with external APIs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>Log Monitoring with AI</h4>
+                        <ul class="tool-list">
+                            <li>Detect anomalies & security alerts</li>
+                            <li>Summarize incidents</li>
+                            <li>Call remediation agents</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="use-cases">
+                    <h4>Orchestrated Multi-Agent Systems:</h4>
+                    <ul class="tool-list">
+                        <li><strong>Agent A:</strong> Reads logs / anomalies</li>
+                        <li><strong>Agent B:</strong> Queries internal systems</li>
+                        <li><strong>Agent C:</strong> Executes remediation or notifies team</li>
+                    </ul>
+                </div>
+
+                <div class="use-cases">
+                    <h4>Example:</h4>
+                    <p>CloudWatch → n8n → AI Agent generates SQL report + creates Jira incident + sends Slack alert with context.</p>
+                </div>
+            </section>
+        </main>
+
+        <section class="roadmap-section">
+            <h2 class="roadmap-title">Implementation Roadmap</h2>
+            
+            <table class="roadmap-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Timeline</th>
+                        <th>Audience</th>
+                        <th>Goal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Productivity</strong></td>
+                        <td>1–2 months</td>
+                        <td>All employees</td>
+                        <td>Increase output quality & speed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Coding AI</strong></td>
+                        <td>2–4 months</td>
+                        <td>Dev teams</td>
+                        <td>Boost development speed & quality</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. AI Agents</strong></td>
+                        <td>3–6 months</td>
+                        <td>AI champions</td>
+                        <td>Automate code creation for standard tasks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Automation</strong></td>
+                        <td>6–12 months</td>
+                        <td>Tech leadership</td>
+                        <td>Achieve proactive, AI-driven operations</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="business-value">
+                <h3>Business Value</h3>
+                <div class="value-item">
+                    <strong>Short-term:</strong> Productivity boost across the organization.
+                </div>
+                <div class="value-item">
+                    <strong>Mid-term:</strong> Reduced development cycles, improved QA coverage.
+                </div>
+                <div class="value-item">
+                    <strong>Long-term:</strong> Autonomous systems handling repetitive and reactive workloads.
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
